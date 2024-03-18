@@ -1,0 +1,58 @@
+﻿@model ICollection<InventarioMVC.Models.Models.Response.ProductoDTOResponse>
+
+@{
+    ViewBag.Title = "Productos Eliniados";
+    Layout = "_Layout";
+}
+
+<section>
+    <h1>Lista de Productos Eliminados</h1>
+    <div class="container">
+        <div class="row mt-4">
+            @if(Model is null)
+            {
+                <p>Sin Resultados</p>
+            }
+            else if(!Model.Any())
+            {
+                <p>Sin datos para mostrar</p>
+
+            }
+            else
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Nombre Producto</th>
+                            <th>Clave</th>
+                            <th>TipoId</th>
+                            <th>Tipo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.ProductoId</td>
+                                <td>@item.NombreProducto</td>
+                                <td>@item.Clave</td>
+                                <td>@item.TipoProducto.TipoId</td>
+                                <td>@item.TipoProducto.Tipo</td>
+                                <td>
+                                    <a asp-controller="Producto" asp-action="Reactivar" asp-route-Id="@item.ProductoId" ><i class="bi bi-bootstrap-reboot"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+            </table>  
+            }
+        </div>
+            <div class="row mt-3 justify-content-md-start">
+                 <div class="col-auto">
+                    <a class="btn btn-primary btn-sm-1 " asp-controller="Producto" asp-action="Index"><span><i class="bi bi-arrow-left-short"></i></span>Regresar</a>
+                </div> 
+            </div>
+    </div>
+</section>

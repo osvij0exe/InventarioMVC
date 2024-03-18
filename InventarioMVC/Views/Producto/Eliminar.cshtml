@@ -1,0 +1,23 @@
+﻿@model InventarioMVC.Models.ViewModels.CrearProductoViewModel
+
+@{
+    ViewBag.Titlte = "Eliminar";
+    Layout = "_Layout";
+}
+
+<section>
+    <div class="container">
+        <h1>Esta seguro de que quiere eliminar el registro</h1>
+        <form asp-controller="Producto" asp-action="Eliminar" method="post">
+            <input type="hidden" asp-for="ProductoId">
+            <div class="row mt-3 justify-content-end">
+                <div class=" col-auto">
+                    <button class="btn btn-outline-primary btn-sm-1" type="submit"><span><i class="bi bi-check"></i></span>Aceptar</button>
+                </div>
+                <div class=" col-auto">
+                    <a class="btn btn-outline-warning" asp-controller="Producto" asp-action="Index"><i class="bi bi-exclamation-lg"></i>Cancelar</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>

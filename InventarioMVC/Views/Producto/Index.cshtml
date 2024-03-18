@@ -1,0 +1,86 @@
+﻿@model InventarioMVC.Models.ViewModels.BuscarProductoViewModel
+
+@{
+    ViewBag.Title = "Listar Clientes";
+    Layout = "_Layout";
+}
+
+
+<section>
+
+    <div>
+        <form asp-controller="producto" asp-action="Index" method="get">
+            <h1>Lista de Producto</h1>
+
+                <div class="form-floating mb-3">
+                    @Html.TextBoxFor(p => p.NombreProducto, new { @class = "form-control", @placeholder = "Buscar por Nombre del Producto", @id = "floatingInput" })
+                    @Html.LabelFor(p => p.NombreProducto, new { @class = "for-label", @for = "floatingInput" })
+                </div>
+            <div class="form-floating mb-3">
+                @Html.TextBoxFor(p => p.Clave, new { @class = "form-control", @placeholder = "Buscar por clave del producto", @id = "floatingInput" })
+                @Html.LabelFor(p => p.Clave, new { @class = "for-label", @for = "floatingInput" })
+            </div>
+            <div class="row">
+                <div class="col col-sm-5">
+                @Html.LabelFor(p => p.TipoProductoSelecionado, new { @class = "for-label" })
+                @Html.DropDownListFor(p => p.TipoProductoSelecionado,
+                             new SelectList(Model.TipoProducto, "TipoId", "Tipo"), "Todos", new { @class = "form-select" })
+                </div>
+            </div>
+            <div class="row mt-3 justify-content-end">
+                <div class=" col-auto">
+                    <button class="btn btn-outline-primary btn-sm-1" type="submit"><span><i class="bi bi-search"></i></span>Buscar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="container">
+        <idv class=" mt-4">
+            @if(Model.Productos is null)
+            {
+                <p>Sin Resultados</p>
+            }
+            else if(!Model.Productos.Any())
+            {
+                <p>Sin datos para mostrar</p>
+            }
+            else
+            {
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Codigo</th>
+                            <th>Nombre Producto</th>
+                            <th>Clave</th>
+                            <th>TipoId</th>
+                            <th>Tipo</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Productos)
+                        {
+                            <tr>
+                                <td>@item.ProductoId</td>
+                                <td>@item.NombreProducto</td>
+                                <td>@item.Clave</td>
+                                <td>@item.TipoProducto.TipoId</td>
+                                <td>@item.TipoProducto.Tipo</td>
+                                <td>
+                                    <a asp-controller="Producto" asp-action="Editar" asp-route-Id="@item.ProductoId"><i class="bi bi-pencil"></i></a>
+                                    <a asp-controller="Producto" asp-action="Eliminar" asp-route-Id="@item.ProductoId"><i class="bi bi-trash3-fill"></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </idv>
+        <div class="row mt-4">
+            <div class=" col">
+                <a class="btn btn-primary btn-sm-1 " asp-controller="Producto" asp-action="Crear"><span><i class="bi bi-plus-circle"></i></span>Agregar</a>
+            </div>
+        </div>
+    </div>
+</section>

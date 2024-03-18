@@ -1,0 +1,25 @@
+﻿@model InventarioMVC.Models.ViewModels.ProductoViewModel
+
+
+@{
+    ViewBag.Title = "Reactivar Producto";
+    Layout = "_Layout";
+}
+
+<section class="section">
+    <div>
+        <h1>Desea Reactivar el Producto</h1>
+        <form asp-controller="Producto" asp-action="Reactivar" method="post">
+            <input type="hidden" asp-for="ProductoId">
+            <div class="row mt-3 justify-content-end">
+                <div class=" col-auto">
+                    <button class="btn btn-outline-primary btn-sm-1" type="submit"><span><i class="bi bi-check"></i></span>Aceptar</button>
+                </div>
+                <div class=" col-auto">
+                    <a class="btn btn-outline-warning" asp-controller="Producto" asp-action="ProductoEliminados"><i class="bi bi-exclamation-lg"></i>Cancelar</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</section>

@@ -1,0 +1,22 @@
+﻿@model InventarioMVC.Models.ViewModels.CrearProductoViewModel
+
+@{
+    ViewBag.Title = "Crear";
+    Layout = "_Layout";
+}
+
+
+<section>
+    <div class="container">
+        <h1>Agregar Nuevo Producto</h1>
+        <form asp-controller="Producto" asp-action="Crear" method="post">
+            <partial name="_FormularioBase" model="Model" />
+        </form>
+    </div>
+</section>
+
+@section Scripts {
+    @{
+        <partial name="_validationScriptsPartial" />
+    }
+}

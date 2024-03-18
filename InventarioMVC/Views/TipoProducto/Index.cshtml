@@ -1,0 +1,32 @@
+﻿@model ICollection<InventarioMVC.Models.Models.Response.TipoProductoDTOResponse>
+
+@{
+    ViewBag.Title = "Lista de Tipos Productos";
+    Layout = "_Layout";
+}
+
+<section>
+    <div class="container">
+    <h1>Lista de los Tipos de Productos</h1>
+    <div class=" mt-4">
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Tipo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.TipoId</td>
+                            <td>@item.Tipo</td>
+                        </tr>
+                    }
+            </tbody>
+        </table>
+    </div>
+
+    </div>
+</section>
